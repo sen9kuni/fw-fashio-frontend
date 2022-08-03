@@ -1,0 +1,76 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --theme-primary: #3A3845;
+    --theme-secondary: #F7CCAC;
+
+    --theme-primary-soft: #C69B7B;
+    --theme-secondary-soft: #826F66;
+
+    --theme-ligth: #D4D4D4;
+    --theme-dark: #9B9B9B;
+
+    --theme-white: #F9F9F9;
+    --theme-black: #222222;
+}
+
+.c-primary{color: var(--theme-primary)}
+.bc-primary{background-color: var(--theme-primary)}
+
+.c-secondary{color: var(--theme-secondary)}
+.bc-secondary{background-color: var(--theme-secondary)}
+
+.c-primary-soft{color: var(--theme-primary-soft)}
+.bc-primary-soft{background-color: var(--theme-primary-soft)}
+
+.c-secondary-soft{color: var(--theme-secondary-soft)}
+.bc-secondary-soft{background-color: var(--theme-secondary-soft)}
+
+.c-ligth{color: var(--theme-ligth)}
+.bc-ligth{background-color: var(--theme-ligth)}
+
+.c-dark{color: var(--theme-dark)}
+.bc-dark{background-color: var(--theme-dark)}
+
+.c-white{color: var(--theme-white)}
+.bc-white{background-color: var(--theme-white)}
+
+.c-black{color: var(--theme-black)}
+.bc-black{background-color: var(--theme-black)}
+
+.w-fill{width: 100%}
+.h-fill{height: 100%}
+
+.h1{
+    font-size: 45px;
+    font-weight: 800;
+}
+
+.h2{
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.h3{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.h4{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.h5{
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.fash-navbar{
+    height: 100px;
+    padding: 0 150px;
+}
