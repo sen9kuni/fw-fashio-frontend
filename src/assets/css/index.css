@@ -44,6 +44,8 @@
 .c-black{color: var(--theme-black)}
 .bc-black{background-color: var(--theme-black)}
 
+.bc-unset{background-color: unset;}
+
 .w-fill{width: 100%}
 .h-fill{height: 100%}
 
@@ -227,4 +229,25 @@ input{
 
 .fash-border-dash-modal-checkout:hover {
     background: unset !important;
+    box-shadow: unset !important;
+}
+
+.modal-checkout-height {
+    min-height: 675px;
+}
+
+.modal-checkout-width {
+    min-width: 450px !important;
+}
+
+.modal-button-add-address {
+    min-width: 160px;
+}
+
+.fash-card-Payment-chekout {
+    min-height: 50px !important;
+}
+
+.fash-warp-logo-payment-chekout {
+    min-width: 122px;
 }
