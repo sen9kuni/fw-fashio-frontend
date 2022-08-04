@@ -39,6 +39,7 @@ function ModalAddAddress(props){
       <Modal.Body className='d-flex flex-column gap-4 px-5'>
         <span className='fash-h2 text-center'>Add new address</span>
         
+        <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Save address as (ex : home address, office address)</Form.Label>
           <Form.Control type="text" placeholder="Rumah" />
@@ -89,6 +90,7 @@ function ModalAddAddress(props){
           <Button variant='outline-secondary' className='modal-button-add-address rounded-5' onClick={props.onHide}>Cancel</Button>
           <Button variant='danger' className='modal-button-add-address rounded-5' onClick={props.onHide}>Save</Button>
         </div>
+        </Form>
 
       </Modal.Body>
     </Modal>
