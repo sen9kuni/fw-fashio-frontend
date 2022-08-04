@@ -222,7 +222,7 @@ input{
 }
     
 .fash-border-dash-modal-checkout {
-    border: dashed;
+    border: dashed !important;
 }
 
 .fash-border-dash-modal-checkout:hover {
