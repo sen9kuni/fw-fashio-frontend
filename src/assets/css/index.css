@@ -219,4 +219,11 @@ input{
 
 .fash-control-product-card{
     flex-wrap: wrap;
+    
+.fash-border-dash-modal-checkout {
+    border: dashed;
+}
+
+.fash-border-dash-modal-checkout:hover {
+    background: unset !important;
 }
