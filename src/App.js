@@ -1,9 +1,9 @@
 import './assets/css/index.css'
-
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div>disnut</div>
+    <Navbar />
   );
 }
 
