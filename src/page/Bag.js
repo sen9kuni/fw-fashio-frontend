@@ -12,7 +12,7 @@ const Bag = () => {
             <Container>
                 <Row>
                     <Col className='ms-1 mt-5 fw-bold'>
-                        <h1 className='Helper-text fw-bold'>My Bag2</h1>
+                        <h1 className='Helper-text fw-bold'>My Bag</h1>
                     </Col>
                 </Row>
                 <Row className='d-flex justify-content-between'>
