@@ -40,7 +40,7 @@ function ModalAddAddress(props){
         <span className='fash-h2 text-center'>Add new address</span>
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Save address as (ex : home address, office address)</Form.Label>
+            <Form.Label>Save address as (ex: home address, office address)</Form.Label>
             <Form.Control type="text" placeholder="Rumah" />
           </Form.Group>
 
