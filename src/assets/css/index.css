@@ -251,3 +251,53 @@ input{
 .fash-warp-logo-payment-chekout {
     min-width: 122px;
 }
+
+.fash-dashboard-menu{
+    width: 400px;
+    padding: 50px;
+}
+
+.fash-profile-image{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.fash-profile-image img{
+    width: 60px;
+    height: 60px;
+}
+
+.fash-dashboard-body{
+    height: calc(100vh - 100px);
+}
+
+.fash-menu-profile{
+    height: fit-content;
+}
+
+.fash-menu-icon{
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.fash-dashboard-content{
+    padding: 50px;
+}
+
+.fash-control-content{
+    border: 1px solid var(--theme-primary);
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.fash-control-input input{
+    padding: 0 15px;
+    height: 45px;
+    width: 350px;
+    border-radius: 5px;
+    border: 1px solid var(--theme-dark);
+}
