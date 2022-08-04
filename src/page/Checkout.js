@@ -38,57 +38,58 @@ function ModalAddAddress(props){
       </Modal.Header>
       <Modal.Body className='d-flex flex-column gap-4 px-5'>
         <span className='fash-h2 text-center'>Add new address</span>
-        
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Save address as (ex : home address, office address)</Form.Label>
-          <Form.Control type="text" placeholder="Rumah" />
-        </Form.Group>
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Save address as (ex : home address, office address)</Form.Label>
+            <Form.Control type="text" placeholder="Rumah" />
+          </Form.Group>
 
-        <Row>
-          <Col md={6}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Recipient's name</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
-          </Col>
-          <Col md={6}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Recipient's telephone number</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
-          </Col>
-          <Col md={6}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Address</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
-          </Col>
-          <Col md={6}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Postal code</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
-          </Col>
-          <Col md={6}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>City or Subdistrict</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
-          </Col>
-        </Row>
-        <div className='d-flex flex-row gap-2 align-items-center mb-4'>
-          <div>
-            <Form.Check type='checkbox'/>
+          <Row>
+            <Col md={6}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Recipient's name</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Recipient's telephone number</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Address</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Postal code</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>City or Subdistrict</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            </Col>
+          </Row>
+          <div className='d-flex flex-row gap-2 align-items-center mb-4'>
+            <div>
+              <Form.Check type='checkbox'/>
+            </div>
+            <div>
+              <span>Make it the primary address</span>
+            </div>
           </div>
-          <div>
-            <span>Make it the primary address</span>
-          </div>
-        </div>
 
-        <div className='d-flex flex-row justify-content-end gap-4'>
-          <Button variant='outline-secondary' className='modal-button-add-address rounded-5' onClick={props.onHide}>Cancel</Button>
-          <Button variant='danger' className='modal-button-add-address rounded-5' onClick={props.onHide}>Save</Button>
-        </div>
+          <div className='d-flex flex-row justify-content-end gap-4'>
+            <Button variant='outline-secondary' className='modal-button-add-address rounded-5' onClick={props.onHide}>Cancel</Button>
+            <Button variant='danger' className='modal-button-add-address rounded-5' onClick={props.onHide}>Save</Button>
+          </div>
+        </Form>
 
       </Modal.Body>
     </Modal>
