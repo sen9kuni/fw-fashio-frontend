@@ -165,3 +165,11 @@ input{
     width: 35px;
     height: 35px;
 }
+
+.fash-border-dash-modal-checkout {
+    border: dashed;
+}
+
+.fash-border-dash-modal-checkout:hover {
+    background: unset !important;
+}
