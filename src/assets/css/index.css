@@ -294,10 +294,49 @@ input{
     padding: 30px;
 }
 
-.fash-control-input input{
+.fash-control-input input[type="text"]{
     padding: 0 15px;
     height: 45px;
     width: 350px;
     border-radius: 5px;
     border: 1px solid var(--theme-dark);
+}
+
+.fash-edit-profile{
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.fash-edit-profile img{
+    width: 110px;
+    height: 110px;
+    justify-content: space-around;
+}
+
+.fash-line{
+    border: 1px solid var(--theme-ligth);
+}
+
+.fash-button{
+    outline: unset;
+    border: unset;
+    /* background-color: transparent; */
+    padding: 8px 25px;
+    border-radius: 50px;
+    border: 1px solid var(--theme-dark);
+    width: fit-content;
+}
+
+.fash-control-input-radio{
+    height: 45px;
+    width: 350px;
+}
+
+.fash-upload-photo{
+    height: 380px;
+    border-radius: 5px;
+    border: 2px dashed var(--theme-ligth);
+    padding: 30px;
 }
