@@ -47,6 +47,18 @@
 .w-fill{width: 100%}
 .h-fill{height: 100%}
 
+.btn{
+    border-radius: 25px;
+    background-color: var(--theme-secondary);
+    border: unset;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn:hover{
+    background-color: var(--theme-secondary-soft);
+}
+
 .fash-h1{
     font-family: 'Roboto';
     font-size: 34px;
@@ -164,4 +176,18 @@ input{
 .fash-nav-profile img{
     width: 35px;
     height: 35px;
+}
+
+.login-wrapper{
+    text-align: center;
+}
+
+.login-btn-switch{
+    background-color: unset !important;
+    max-width: 200px;
+}
+
+.change-password-btn{
+    padding-left: 40px;
+    padding-right: 40px !important;
 }
