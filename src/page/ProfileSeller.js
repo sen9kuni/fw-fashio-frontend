@@ -2,7 +2,6 @@
 import Navbar from "../components/Navbar"
 import DashboardMenu from "../components/DashboardMenu"
 import profile from '../assets/images/profile.jpg'
-import ColorPicker from "../components/ColorPicker"
 
 const Dashboard = () => {
     return(
