@@ -446,3 +446,7 @@ input {
     border: 2px dashed var(--theme-ligth);
     padding: 30px;
 }
+
+.fash-border-address-color-primary {
+    border: solid var(--theme-secondary);
+}
