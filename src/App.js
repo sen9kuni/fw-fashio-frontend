@@ -44,8 +44,8 @@ function App() {
         <Route path='/bag' element={<PrivateRoutesCostumer><Bag /></PrivateRoutesCostumer>}></Route>
         <Route path='/category' element={<PrivateRoutes><Category /></PrivateRoutes>}></Route>
         <Route path='/checkout' element={<Checkout />}></Route>
-        <Route path='/profile' element={<Dashboard />}></Route>
-        <Route path='/profile/seller/addproduct' element={<PrivateRoutes><SellingProducts /></PrivateRoutes>}></Route>
+        <Route path='/profile' element={<PrivateRoutes><Dashboard /></PrivateRoutes>}></Route>
+        <Route path='/profile/seller/addproduct' element={<SellingProducts />}></Route>
         <Route path='/profile/seller/products' element={<PrivateRoutes><ProductSeller /></PrivateRoutes>}></Route>
         <Route path='/profile/seller/order' element={<PrivateRoutes><OrderSeller /></PrivateRoutes>}></Route>
         <Route path='/profile/seller/profile' element={<PrivateRoutes><ProfileSeller /></PrivateRoutes>}></Route>

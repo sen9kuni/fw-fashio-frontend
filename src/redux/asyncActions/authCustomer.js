@@ -7,12 +7,13 @@ export const loginCustomer = createAsyncThunk('authCustomer/login', async (reque
   const result = {}
   try {
     const send = qs.stringify(request)
-    const { data } = await http().post('authCustomer/login', send, {
+    const { data } = await http().post('/login-costumer', send, {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
       }
     })
-    result.token = data.results.token
+    result.token = data.result.token
+    console.log(data);
     return result
   } catch (e) {
     result.errorMsg = e.response.data.message
@@ -26,7 +27,7 @@ export const registerCustomer = createAsyncThunk('authCustomer/register', async 
   const result = {}
   try {
     const send = qs.stringify(request)
-    const { data } = await http().post('/authCustomer/register', send, {
+    const { data } = await http().post('/register-costumer', send, {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
       }

@@ -49,6 +49,8 @@ function LoginCustomer() {
   const onLogin = (value) => {
     const data = {email: value.email, password: value.password}
     dispatch(loginCustomer(data))
+    console.log(token);
+    // navigate('/')
   }
 
   React.useEffect(()=>{

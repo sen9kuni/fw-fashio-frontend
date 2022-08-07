@@ -20,9 +20,18 @@ import watch from '../assets/images/category/watch.png'
 
 
 import React from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getProducts } from "../redux/asyncActions/getProducts"
 
 
 const Home = () => {
+    const dispatch = useDispatch()
+    const products = useSelector((state) => state?.getAllProducts?.data);
+
+    React.useEffect(()=>{
+        dispatch(getProducts())
+    },[])
+    console.log(products.map((o) => o.name_product));
     return(
         <>
             <div className="d-flex flex-column align-items-center bc-white ">
@@ -59,15 +68,10 @@ const Home = () => {
 
                     <div className="fash-new-product d-flex flex-column gap-2">
                         <span className="fash-h2 c-black">New</span>
-                        <span className="fash-h6 c-dark">You’ve never seen it before!</span>
+                        <span className="fash-h6 c-dark">You've never seen it before!</span>
                         <div className="d-flex fash-control-product-card gap-3">
-                            <Card />
-                            <Card />
-                            <Card />
-                            <Card />
-                            <Card />
-                            <Card />
-                            <Card />
+                            {/* <Card /> */}
+                            {products.map((o) => <Card nameProduct={o.name_product}  />)}
                         </div>
                     </div>
 
@@ -75,13 +79,13 @@ const Home = () => {
                         <span className="fash-h2 c-black">Popular</span>
                         <span className="fash-h6 c-dark">Find clothes that are trending recently</span>
                         <div className="d-flex fash-control-product-card gap-3">
+                            {/* <Card />
                             <Card />
                             <Card />
                             <Card />
                             <Card />
                             <Card />
-                            <Card />
-                            <Card />
+                            <Card /> */}
                         </div>
                     </div>
                 </div>

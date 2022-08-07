@@ -1,8 +1,55 @@
 import React, { useState } from 'react'
-import { Container, Form, Button, ButtonGroup, ToggleButton } from 'react-bootstrap'
+import { Container, Form, Button, ButtonGroup, ToggleButton, Alert } from 'react-bootstrap'
 import { AiFillShopping } from "react-icons/ai";
+import { useDispatch, useSelector } from 'react-redux'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import { useNavigate } from 'react-router-dom';
+import { registerCustomer } from '../redux/asyncActions/authCustomer';
+
+const registerSechema  = Yup.object().shape({
+  username: Yup.string().min(4).required(),
+  email: Yup.string().email('Invalid email address format').required(),
+  password: Yup.string().min(8).required()
+})
+
+const AuthForm = ({errors, handleSubmit, handleChange}) => {
+  const successMsg = useSelector((state) => state.authCustomer.successMsg)
+  const errorMsg = useSelector((state) => state.authCustomer.errorMsg)
+  return (
+    <Form noValidate onSubmit={handleSubmit} >
+      {successMsg && <Alert variant="success">{successMsg}</Alert>}
+      {errorMsg && <Alert variant="danger">{errorMsg}</Alert>}
+
+      <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Control type="username" name='username' placeholder="Name"  onChange={handleChange}isInvalid={!!errors.username} />
+        <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="email" name='email' placeholder="Email" onChange={handleChange} isInvalid={!!errors.email} />
+        <Form.Control.Feedback type='invalid'>{errors.email}</Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Control type="password" name='password' placeholder="Password" onChange={handleChange} isInvalid={!!errors.password} />
+        <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
+      </Form.Group>
+
+        <div className="d-grid mb-4 mt-4">
+        <Button type="submit" className="login-btn-primary">Confirm</Button>
+      </div>
+    </Form>
+  )
+}
 
 function SignUpCutomer() {
+  const dispatch = useDispatch()
+  const token = useSelector((state) => state.authCustomer.token)
+  const navigate = useNavigate()
+  const onRegister = (value) => {
+    const data = {username: value.username, email: value.email, password: value.password}
+    dispatch(registerCustomer(data))
+    navigate('/login-customer')
+  }
 
     const [radioValue, setRadioValue] = useState('1');
 
@@ -41,21 +88,25 @@ function SignUpCutomer() {
         ))}
       </ButtonGroup>
       </div>
-      <Form>
-      <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Control type="username" placeholder="Name" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="email" placeholder="Email" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
+      {/* <Form>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Control type="username" placeholder="Name" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control type="email" placeholder="Email" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
       </Form>
       
       <div className="d-grid mb-4 mt-4">
         <Button className="login-btn-primary">Confirm</Button>
-      </div>
+      </div> */}
+
+      <Formik initialValues={{username:'', email: '', password: ''}} validationSchema={registerSechema} onSubmit={onRegister}>
+            {(props)=><AuthForm {...props}/>}
+      </Formik>
       <p>Already have a Tokopedia account?<span className='c-secondary-soft'> Login</span></p>
     </Container>      
     </section>
