@@ -446,3 +446,43 @@ input {
     border: 2px dashed var(--theme-ligth);
     padding: 30px;
 }
+
+.fash-chat{
+    width: 300px;
+    border: 1px solid var(--theme-dark);
+    border-radius: 5px;
+}
+
+.fash-chat-title{
+    padding: 20px;
+    border-bottom: 1px solid var(--theme-dark);
+}
+
+.fash-control-friends{
+    padding: 20px;
+}
+
+.fash-chat-panel{
+    border: 1px solid var(--theme-dark);
+    border-radius: 5px;
+}
+
+.fash-chat-body{
+    flex: 1;
+    padding: 20px;
+}
+
+.fash-input-chat{
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 25px;
+    border: 1px solid var(--theme-dark);
+}
+
+.fash-chat-send{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: var(--theme-primary);
+}
