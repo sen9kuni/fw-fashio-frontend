@@ -447,6 +447,11 @@ input {
     padding: 30px;
 }
 
+
+.fash-border-address-color-primary {
+    border: solid var(--theme-secondary);
+}
+
 .fash-chat{
     width: 300px;
     border: 1px solid var(--theme-dark);
