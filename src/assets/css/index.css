@@ -380,3 +380,27 @@ input{
     border-radius: 50%;
     background-color: var(--theme-primary);
 }
+
+.fash-color-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--theme-secondary);
+    color: var(--theme-primary);
+    border: 1px solid var(--theme-dark);
+    outline: unset;
+    border-radius: 5px;
+}
+
+.fash-color-input{
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--theme-black);
+    border-radius: 50%;
+}
+
+.invaild-feedback{
+    color: red;
+}
