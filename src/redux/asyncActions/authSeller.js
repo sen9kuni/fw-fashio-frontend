@@ -7,12 +7,13 @@ export const loginSeller = createAsyncThunk('authSeller/login', async (request) 
   const result = {}
   try {
     const send = qs.stringify(request)
-    const { data } = await http().post('authSeller/login', send, {
+    const { data } = await http().post('/loginseller', send, {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
       }
     })
-    result.token = data.results.token
+    result.token = data.result
+    // console.log(data.result);
     return result
   } catch (e) {
     result.errorMsg = e.response.data.message
@@ -26,7 +27,7 @@ export const registerSeller = createAsyncThunk('authSeller/register', async (req
   const result = {}
   try {
     const send = qs.stringify(request)
-    const { data } = await http().post('/authSeller/register', send, {
+    const { data } = await http().post('/seller/register', send, {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
       }
@@ -58,3 +59,23 @@ export const resetPasswordSeller = createAsyncThunk('authSeller/changePassword',
   }
 })
 // reset pasword
+
+// add products
+export const addProduct = createAsyncThunk('authSeller/addProduct', async (request) => {
+  const result = {}
+  try {
+    const send = qs.stringify(request)
+    const { data } = await http().post('/ProductSeller', send, {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      }
+      
+    })
+    result.successMsg = data.message;
+    return result;
+  } catch (e) {
+    result.errorMsg = e.response.data.message;
+    return result;
+  }
+})
+// add products

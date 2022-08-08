@@ -31,7 +31,6 @@ const Home = () => {
     React.useEffect(()=>{
         dispatch(getProducts())
     },[])
-    console.log(products.map((o) => o.name_product));
     return(
         <>
             <div className="d-flex flex-column align-items-center bc-white ">
@@ -70,8 +69,12 @@ const Home = () => {
                         <span className="fash-h2 c-black">New</span>
                         <span className="fash-h6 c-dark">You've never seen it before!</span>
                         <div className="d-flex fash-control-product-card gap-3">
-                            {/* <Card /> */}
-                            {products.map((o) => <Card nameProduct={o.name_product}  />)}
+                            <Card />
+                            {products && products?.map((o) => {
+                                return (
+                                    <Card nameProduct={o.name_product}  />
+                                )
+                            })}
                         </div>
                     </div>
 
