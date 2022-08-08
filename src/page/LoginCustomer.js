@@ -31,7 +31,7 @@ const AuthForm = ({errors, handleSubmit, handleChange}) => {
       </Form.Group>
 
       <div className='text-end .fash-h6'>
-        <Link to={'/reset-password-customer'} className='c-primary-soft'>Forgot password?</Link>
+        <Link to={'/reset-password-customer'} className='text-decoration-none c-primary-soft'>Forgot password?</Link>
       </div>
 
       <div className="d-grid mb-4 mt-4">
@@ -113,7 +113,7 @@ function LoginCustomer() {
       <Formik initialValues={{email: '', password: ''}} validationSchema={loginSechema} onSubmit={onLogin}>
             {(props)=><AuthForm {...props}/>}
       </Formik>
-      <p>Don't have a Fashio account?<span className='c-secondary-soft'> Register</span></p>
+      <p>Don't have a Fashio account?<Link to={'/signup-customer'} className='text-decoration-none'><span className='c-secondary-soft'> Register</span></Link></p>
     </Container>      
     </section>
     )

@@ -4,7 +4,7 @@ import { AiFillShopping } from "react-icons/ai";
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { registerCustomer } from '../redux/asyncActions/authCustomer';
 
 const registerSechema  = Yup.object().shape({
@@ -107,7 +107,7 @@ function SignUpCutomer() {
       <Formik initialValues={{username:'', email: '', password: ''}} validationSchema={registerSechema} onSubmit={onRegister}>
             {(props)=><AuthForm {...props}/>}
       </Formik>
-      <p>Already have a Tokopedia account?<span className='c-secondary-soft'> Login</span></p>
+      <p>Already have a Tokopedia account?<Link to={'/login-customer'} className='text-decoration-none'><span className='c-secondary-soft'> Login</span></Link></p>
     </Container>      
     </section>
     )

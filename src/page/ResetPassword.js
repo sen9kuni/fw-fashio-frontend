@@ -1,9 +1,19 @@
+import { Formik } from 'formik';
 import React from 'react'
 import {  Container, Form, Button } from 'react-bootstrap'
 import { AiFillShopping } from "react-icons/ai";
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { setEmailCustomer } from '../redux/reducers/authCustomer';
 
 function ResetPassword() {
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const onSubmit = (value)=> {
+    console.log(value);
+    dispatch(setEmailCustomer(value))
+    navigate('/reset-confirmation-customer')
+  }
   return (
     <section>
     <Container className='col-md-3 pt-5 d-flex flex-column justify-content-center login-wrapper'>
@@ -16,15 +26,19 @@ function ResetPassword() {
       <span className='fash-h3'>Reset password</span>
 
       </div>
-      <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="email" placeholder="Email" />
-      </Form.Group>
-      </Form>
-      <div className="d-grid mb-4 mt-4">
-        <Button className="login-btn-primary">Confirm</Button>
-      </div>
-      <p>Don't have a Fashio account?<span className='c-secondary-soft'> Register</span></p>
+      <Formik initialValues={{email: ''}}>
+      {(props)=>
+        <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control onChange={props.handleChange} name='email' type="email" placeholder="Email" />
+        </Form.Group>
+        <div className="d-grid mb-4 mt-4">
+          <Button onClick={()=> onSubmit(props.values)} className="login-btn-primary">Confirm</Button>
+        </div>
+        </Form>
+      }
+      </Formik>
+      <p>Don't have a Fashio account?<Link to={'/signup-customer'} className='text-decoration-none'><span className='c-secondary-soft'> Register</span></Link></p>
     </Container>      
     </section>
   );

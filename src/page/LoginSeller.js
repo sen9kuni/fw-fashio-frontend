@@ -3,7 +3,7 @@ import { Container, Form, Button, ButtonGroup, ToggleButton } from 'react-bootst
 import { AiFillShopping } from "react-icons/ai";
 import { Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginSeller } from '../redux/asyncActions/authSeller';
 
 
@@ -65,7 +65,7 @@ function LoginSeller() {
           <Form.Control onChange={props.handleChange} type="password" name='password' placeholder="Password" />
         </Form.Group>
         <div className='text-end .fash-h6'>
-        <span className='c-primary-soft'>Forgot password?</span>
+        <Link to={'/reset-password-seller'} className='text-decoration-none c-primary-soft'>Forgot password?</Link>
         </div>
         <div className="d-grid mb-4 mt-4">
           <Button onClick={()=> onLogin(props.values)} className="login-btn-primary">Confirm</Button>
@@ -73,7 +73,7 @@ function LoginSeller() {
         </Form>
       }
       </Formik>
-      <p>Don't have a Fashio account?<span className='c-secondary-soft'> Register</span></p>
+      <p>Don't have a Fashio account?<Link to={'/signup-seller'} className='text-decoration-none'><span className='c-secondary-soft'> Register</span></Link></p>
     </Container>      
     </section>
     )

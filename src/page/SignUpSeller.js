@@ -3,7 +3,7 @@ import { Container, Form, Button, ButtonGroup, ToggleButton } from 'react-bootst
 import { AiFillShopping } from "react-icons/ai";
 import { Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { registerSeller } from '../redux/asyncActions/authSeller';
 
 function SignUpSeller() {
@@ -79,7 +79,7 @@ function SignUpSeller() {
           }
           
         </Formik>
-        <p>Already have a Tokopedia account?<span className='c-secondary-soft'> Login</span></p>
+        <p>Already have a Tokopedia account?<Link to={'/login-seller'} className='text-decoration-none'><span className='c-secondary-soft'> Login</span></Link></p>
       </Container>      
       </section>
     )

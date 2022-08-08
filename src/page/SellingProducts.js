@@ -7,8 +7,12 @@ import { ChromePicker } from "react-color"
 import { AiOutlineBgColors, AiOutlineClose } from "react-icons/ai";
 import * as Yup from 'yup'
 import { Button } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import { addProduct } from "../redux/asyncActions/authSeller"
 
 const Dashboard = () => {
+    const dispatch = useDispatch()
+    const token = useSelector((state) => state.authSeller.token)
     const [color, setColor] = React.useState('#fff')
     const [showPicker, setShowPicker] = React.useState(false)
 
@@ -23,12 +27,17 @@ const Dashboard = () => {
     const onAddProduct = (value) => {
         value.color = color
         console.log(value);
+        const param = {token: token, name_product: value.name_product,price: parseInt(value.price), stock: parseInt(value.stock), condition: value.condition, description: value.description, color: value.color, name: value.name }
+        console.log(param);
+        // const finalToken = token 
+        dispatch(addProduct(param))
+        // dispatch(addProduct(finalToken, value.name_product, parseInt(value.price), parseInt(value.stock), value.condition, value.description, value.color, value.name))
     };
     return(
         <>
             <Navbar />
             <Formik 
-                initialValues={{name: '', color: color, price: '', stock: '', condition: '', description: ''}}
+                initialValues={{name_product: '', color: color, price: '', stock: '', condition: '', description: '', name: ''}}
                 validationSchema={productSchema}
                 >
                 {(props) =>
@@ -42,7 +51,7 @@ const Dashboard = () => {
                                 <span className="fash-line"></span>
                                 <div className="fash-control-input d-flex flex-column gap-2">
                                     <span className="fash-h6 c-dark">Name</span>
-                                    <input type="text" onChange={props.handleChange} name="name" className="" placeholder="" />
+                                    <input type="text" onChange={props.handleChange} name="name_product" className="" placeholder="" />
                                     <span className='invaild-feedback fash-h8' type="invalid">{props.errors.name}</span>
                                 </div>
                             </div>
@@ -52,6 +61,11 @@ const Dashboard = () => {
                                     <span className="fash-h4 fw-4">Item details</span>
                                 </div>
                                 <span className="fash-line"></span>
+                                <div className="fash-control-input d-flex flex-column gap-2">
+                                    <span className="fash-h6 c-dark">Unit size</span>
+                                    <input type="text" name="name" onChange={props.handleChange} className="" placeholder="" />
+                                    <span className='invaild-feedback fash-h8' type="invalid">{props.errors.name}</span>
+                                </div>
                                 <div className="fash-control-input d-flex flex-column gap-2">
                                     <span className="fash-h6 c-dark">Unit price</span>
                                     <input type="text" name="price" onChange={props.handleChange} className="" placeholder="" />
