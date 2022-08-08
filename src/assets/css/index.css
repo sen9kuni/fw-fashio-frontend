@@ -191,3 +191,93 @@ input{
     padding-left: 40px;
     padding-right: 40px !important;
 }
+
+.product-img-wrapper{
+    padding-left: 100px;
+}
+
+.product-img-primary{
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.product-img-secondary{
+    max-width: 87px;
+    max-height: 87px;
+}
+
+.product-shop-name{
+    color: #9B9B9B;
+}
+
+.product-counter-btn{
+    width: 40px;
+    height: 40px;
+    border: unset;
+}
+
+.product-btn-option{
+    padding: 10px 60px;
+    background-color: white;
+    color: black;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.product-btn-buy{
+    padding: 10px 100px;
+}
+
+.product-desc-wrapper{
+    padding: 50px 150px;
+}
+
+.product-desc{
+    color: #9B9B9B;
+}
+
+.product-rating-val{
+    font-family: 'Roboto';
+    font-size: 75px;
+    font-weight: 400;
+}
+
+.product-rating-val-total{
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 300;
+    color: #9B9B9B;
+}
+
+.star-rating{
+    max-width: 17px;
+    max-height: 17px;
+}
+
+.line-rating{
+    max-height: 6px;
+}
+
+.product-hr{
+    margin: 5px 150px;
+}
+
+.product-similiar{
+    font-family: 'Roboto';
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.product-similiar-sec{
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight: 300;
+    color: #9B9B9B;
+}
+
+.product-navigation{
+    padding-top: 50px;
+    padding-left: 100px;
+    color: #9B9B9B;
+}
