@@ -24,6 +24,7 @@ import ResetPasswordSeller from './page/ResetPasswordSeller'
 import PasswordConfirmationSeller from './page/PasswordConfirmationSeller'
 import ResetPasswordReloginSeller from './page/ResetPasswordReloginSeller'
 import ProfileAddressCostomer from './page/ProfileAddressCostomer';
+import Product from './page/Product'
 import { BrowserRouter } from 'react-router-dom'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}></Route>
+        <Route path='/product' element={<Product />}></Route>
         <Route path='/login-customer' element={<LoginCustomer />}></Route>
         <Route path='/signup-customer' element={<SignUpCustomer />}></Route>
         <Route path='/login-seller' element={<LoginSeller />}></Route>

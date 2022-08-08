@@ -6,6 +6,7 @@ import React from "react"
 import { ChromePicker } from "react-color"
 import { AiOutlineBgColors, AiOutlineClose } from "react-icons/ai";
 import * as Yup from 'yup'
+import { Button } from "react-bootstrap"
 
 const Dashboard = () => {
     const [color, setColor] = React.useState('#fff')
