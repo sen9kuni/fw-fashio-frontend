@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import 'yup-phone';
 import { useDispatch, useSelector } from 'react-redux'
+import { getAddresById } from '../redux/asyncActions/authCustomer';
 
 const addressSechema  = Yup.object().shape({
   postalCode: Yup.string().min(5).required(),
@@ -95,13 +96,25 @@ function ModalChangeAddress(props){
   )
 }
 
-export default function CardAddress({name, address}) {
+export default function CardAddress({id ,name, address, placeName, city, postalCode}) {
+  const dispatch = useDispatch()
   const [modalShow, setModalShow] = React.useState(false);
+  const token = useSelector((state) => state.authCustomer.token)
+  
+  const handleclick = (token, id) => {
+    // const idAddress = id
+    // idFinal = idAddress
+    
+    // console.log(id);
+    const param = {token: token, id: id}
+    console.log(param);
+    dispatch(getAddresById(param))
+  }
   return (
     <>
-      <div className='d-flex flex-column p-4 gap-2 rounded fash-border-address-color-primary'>
+      <div onClick={() => handleclick(token, id)} className='d-flex flex-column p-4 gap-2 rounded fash-border-address-color-primary'>
           <span className='fash-h4 fw-5 c-black'>{name}</span>
-          <p className='fash-h6 c-black'>{address}</p>
+          <p className='fash-h6 c-black'>{placeName}, {address}, {city}, {postalCode}</p>
           <div>
             <Button onClick={() => setModalShow(true)} className='bg-light border-0 p-0 shadow-none'><span className='fash-h4 fw-5 c-black'>Change address</span> </Button>
           </div>

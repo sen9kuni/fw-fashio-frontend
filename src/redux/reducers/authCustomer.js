@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { loginCustomer, registerCustomer } from '../asyncActions/authCustomer'
+import { getAddresById, getAllAddress, loginCustomer, registerCustomer } from '../asyncActions/authCustomer'
 
 const initialState = {
   token: localStorage.getItem('token') || null,
   errorMsg: null,
   successMsg: null,
-  email: null
+  email: null,
+  dataAddress: [],
+  addressChoice: null
 }
 
 const authCustomer = createSlice({
@@ -48,9 +50,21 @@ const authCustomer = createSlice({
       state.errorMsg = action.payload?.errorMsg;
       state.successMsg = action.payload?.successMsg;
     })
+
+    build.addCase(getAllAddress.fulfilled, (state, action) => {
+      state.dataAddress = action.payload.result
+    })
+
+    build.addCase(getAddresById.pending, (state) => {
+      state.errorMsg = null;
+      state.successMsg = null;
+    })
+    build.addCase(getAddresById.fulfilled, (state,action) => {
+      state.addressChoice = action.payload.result
+    })
   }
 })
 
-export { loginCustomer, registerCustomer }
+export { loginCustomer, registerCustomer, getAllAddress }
 export const { logoutCustomer, setEmailCustomer, deleteEmailCustomer } = authCustomer.actions
 export default authCustomer.reducer

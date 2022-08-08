@@ -491,3 +491,7 @@ input {
     border-radius: 50%;
     background-color: var(--theme-primary);
 }
+
+.fash-min-w-checkout {
+    max-width: 720px !important;
+}

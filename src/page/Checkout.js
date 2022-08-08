@@ -12,6 +12,8 @@ import gopay from '../assets/images/checkout/Logo-GoPay.png'
 import pos from '../assets/images/checkout/logo pos indonesia.png'
 import masterCard from '../assets/images/checkout/mastercard.png'
 import { FiX } from 'react-icons/fi'
+import CardAddress from '../components/CardAddress'
+import { getAllAddress } from '../redux/asyncActions/authCustomer'
 
 const addressSechema  = Yup.object().shape({
   postalCode: Yup.string().min(5).required(),
@@ -171,6 +173,14 @@ function ModalAddAddress(props){
 }
 
 function ModalAddres(props) {
+  const dispatch = useDispatch()
+  const token = useSelector((state) => state.authCustomer.token)
+  const address = useSelector((state) => state.authCustomer.dataAddress)
+  // console.log(address);
+  React.useEffect(()=> {
+    dispatch(getAllAddress(token))
+  }, [])
+  // console.log(address);
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <Modal
@@ -186,11 +196,14 @@ function ModalAddres(props) {
         <span className='fash-h2 text-center'>Choose another address</span>
         <Button variant='outline-secondary' className='fash-border-dash-modal-checkout py-4 text-secondary' onClick={() => setModalShow(true)}>Add new address</Button>
         
-        <div className='d-flex flex-column p-4 gap-2 rounded shadow-sm'>
+        {/* <div className='d-flex flex-column p-4 gap-2 rounded shadow-sm'>
             <span className='fash-h4 fw-5 c-black'>Andreas Jane</span>
             <p className='fash-h6 c-black'>Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok c 16] Sokaraja, Kab. Banyumas, 53181</p>
             <Link to={'#'} className='fash-h4 fw-5 text-decoration-none text-danger'>Change address</Link>
-        </div>
+        </div> */}
+        {address && address.map((o) => 
+          <CardAddress key={o.id} id={o.id} name={o.recepient_name} placeName={o.place_name} address={o.address} city={o.city} postalCode={o.postal_code} />
+        )}
       </Modal.Body>
       <ModalAddAddress show={modalShow} onHide={() => setModalShow(false)} />
     </Modal>
@@ -228,7 +241,7 @@ function ModalPayment(props) {
               <span>Gopay</span>
             </div>
             </div>
-            <Form.Check type='checkbox' name='payment'/>
+            <Form.Check type='radio' name='payment'/>
           </div>
           <div className='d-flex flex-row fash-card-Payment-chekout justify-content-between align-items-center'>
             <div className='d-flex flex-row gap-3'>
@@ -239,7 +252,7 @@ function ModalPayment(props) {
               <span>Pos Indonesia</span>
             </div>
             </div>
-            <Form.Check type='checkbox' name='payment'/>
+            <Form.Check type='radio' name='payment'/>
           </div>
           <div className='d-flex flex-row fash-card-Payment-chekout justify-content-between align-items-center'>
             <div className='d-flex flex-row gap-3'>
@@ -250,7 +263,7 @@ function ModalPayment(props) {
               <span>Mastercard</span>
             </div>
             </div>
-            <Form.Check type='checkbox' name='payment'/>
+            <Form.Check type='radio' name='payment'/>
           </div>
 
         </div>
@@ -287,17 +300,50 @@ function ModalPayment(props) {
 function Checkout() {
   const [modalAddressShow, setModalAddressShow] = React.useState(false);
   const [modalPaymentShow, setModalPaymentShow] = React.useState(false);
+  const dispatch = useDispatch()
+  const token = useSelector((state) => state.authCustomer.token)
+  const address = useSelector((state) => state.authCustomer.dataAddress)
+  const addressChoice = useSelector((state) => state.authCustomer.addressChoice)
+  React.useEffect(()=> {
+    dispatch(getAllAddress(token))
+  }, [])
   return (
     <>
       <Navbar />
       <Container className='checkout-container py-4 d-flex flex-row'>
-        <Row className=''>
-          <Col md={8} className='d-flex flex-column gap-3'>
+        <div className='d-flex flex-row w-100 justify-content-lg-between gap-1'>
+          <Col md={8} className='d-flex flex-column gap-3 fash-min-w-checkout'>
           <span className='c-black fash-h1'>Checkout</span>
           <span className='fash-h4 fw-5'>Shipping Adress</span>
           <div className='d-flex flex-column p-4 gap-2 rounded shadow-sm'>
-            <span className='fash-h4 fw-5 c-black'>Andreas Jane</span>
-            <p className='fash-h6 c-black'>Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok c 16] Sokaraja, Kab. Banyumas, 53181</p>
+            {/* <span className='fash-h4 fw-5 c-black'>Andreas Jane</span>
+            <p className='fash-h6 c-black'>Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok c 16] Sokaraja, Kab. Banyumas, 53181</p> */}
+            {/* {address && address.map((o) => {
+              if (o.primary_address === true) {
+                return (
+                  // <CardAddress key={o.id} name={o.recepient_name} placeName={o.place_name} address={o.address} city={o.city} postalCode={o.postal_code} />
+                  <>
+                    <span className='fash-h4 fw-5 c-black'>{o.recepient_name}</span>
+                    <p className='fash-h6 c-black'>{o.place_name}, {o.address} {o.city}, {o.postal_code}</p>
+                  </>
+                )
+            } else {
+              return null
+            }
+            })} */}
+            { addressChoice ? addressChoice.map((o)=> {
+              return (
+                <CardAddress key={o.id} id={o.id} name={o.recepient_name} placeName={o.place_name} address={o.address} city={o.city} postalCode={o.postal_code} />
+              )
+            }) : address.map((o) => {
+              if (o.primary_address === true) {
+                return (
+                  <CardAddress key={o.id} id={o.id} name={o.recepient_name} placeName={o.place_name} address={o.address} city={o.city} postalCode={o.postal_code} />
+                )
+            } else {
+              return null
+            }
+            })}
             <Button variant='outline-secondary' className='w-50 rounded-5' onClick={() => setModalAddressShow(true)}>Choose another address</Button>
           </div>
 
@@ -326,7 +372,7 @@ function Checkout() {
                 <Button variant='danger' className='fash-h6 rounded-5' onClick={() => setModalPaymentShow(true)}>Select payment</Button>
             </div>
           </Col>
-        </Row>
+        </div>
       </Container>
       <ModalAddres show={modalAddressShow} onHide={() => setModalAddressShow(false)} />
       <ModalPayment show={modalPaymentShow} onHide={() => setModalPaymentShow(false)} />

@@ -59,3 +59,34 @@ export const resetPasswordCustomer = createAsyncThunk('authCustomer/changePasswo
   }
 })
 // reset pasword
+
+// get all address
+export const getAllAddress = createAsyncThunk('authCustomer/get-all-address', async (token) => {
+  const result = {}
+  try {
+    const { data } = await http(token).get('/address-costumer')
+    return data
+  } catch (e) {
+    result.message = e.response.data?.message;
+    return result
+  }
+})
+// get all address
+
+// get address by id
+export const getAddresById = createAsyncThunk('authCustomer/get-address-by-id', async (param)=> {
+  const result = {}
+  const token = param.token
+  const setId = param.id
+  console.log(token);
+  console.log(setId);
+  try {
+    const { data } = await http(token).get(`/address-costumer/${setId}`)
+    return data
+  } catch (e) {
+    result.message = e.response.data?.message;
+    return result
+  }
+})
+// get address by id
+
