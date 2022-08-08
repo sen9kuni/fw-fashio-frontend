@@ -1,9 +1,22 @@
 import React, { useState } from 'react'
 import { Container, Form, Button, ButtonGroup, ToggleButton } from 'react-bootstrap'
 import { AiFillShopping } from "react-icons/ai";
+import { Formik } from 'formik'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import { loginSeller } from '../redux/asyncActions/authSeller';
 
 
 function LoginSeller() {
+  const dispatch = useDispatch()
+  const token = useSelector((state) => state.authSeller.token)
+  const navigate = useNavigate()
+  const onLogin = (value) => {
+    const data = {email: value.email, password: value.password}
+    dispatch(loginSeller(data))
+    // console.log(token);
+    navigate('/')
+  }
 
     const [radioValue, setRadioValue] = useState('1');
 
@@ -42,20 +55,24 @@ function LoginSeller() {
         ))}
       </ButtonGroup>
       </div>
-      <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="email" placeholder="Email" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      </Form>
-      <div className='text-end .fash-h6'>
-      <span className='c-primary-soft'>Forgot password?</span>
-      </div>
-      <div className="d-grid mb-4 mt-4">
-        <Button className="login-btn-primary">Confirm</Button>
-      </div>
+      <Formik initialValues={{email: '', password:''}}>
+      {(props)=> 
+        <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control onChange={props.handleChange} type="email" name='email' placeholder="Email" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control onChange={props.handleChange} type="password" name='password' placeholder="Password" />
+        </Form.Group>
+        <div className='text-end .fash-h6'>
+        <span className='c-primary-soft'>Forgot password?</span>
+        </div>
+        <div className="d-grid mb-4 mt-4">
+          <Button onClick={()=> onLogin(props.values)} className="login-btn-primary">Confirm</Button>
+        </div>
+        </Form>
+      }
+      </Formik>
       <p>Don't have a Fashio account?<span className='c-secondary-soft'> Register</span></p>
     </Container>      
     </section>
