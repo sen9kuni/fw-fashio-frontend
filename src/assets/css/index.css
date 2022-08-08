@@ -611,3 +611,28 @@ input {
 .fash-min-w-checkout {
     max-width: 720px !important;
 }
+
+.fash-product-control{
+    height: fit-content;
+}
+
+.fash-main-picture{
+    width: 380px;
+    height: 380px;
+}
+
+.fash-sec-picture{
+    width: 65px;
+    height: 65px;
+}
+
+.fash-reting-product{
+    font-size: 60px;
+}
+
+.fash-bar-reating{
+    height: 5px;
+    width: 130px;
+    border-radius: 3px;
+    background-color: var(--theme-primary-soft);
+}
