@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import { Container, Row, Col, Button, Modal, Form, Alert } from 'react-bootstrap'
 import dummyImage from '../assets/images/Man Suit.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -198,6 +198,10 @@ function ModalAddres(props) {
 }
 
 function ModalPayment(props) {
+  const navigate = useNavigate()
+  const onPayment = (value)=> {
+    navigate('/profile/custommer/order')
+  }
   return (
     <Modal
       {...props}
@@ -269,7 +273,7 @@ function ModalPayment(props) {
             <span className='fash-h4 fw-4'>Shopping summary</span>
             <span className='fash-h4 fw-4'>$ 45.0</span>
           </div>
-          <Button variant='danger' className='modal-button-add-address rounded-5' onClick={props.onHide}>Buy</Button>
+          <Button variant='danger' className='modal-button-add-address rounded-5' onClick={onPayment}>Buy</Button>
         </div>
       </Modal.Body>
       {/* <Modal.Footer>

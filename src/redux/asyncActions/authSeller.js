@@ -61,15 +61,14 @@ export const resetPasswordSeller = createAsyncThunk('authSeller/changePassword',
 // reset pasword
 
 // add products
-export const addProduct = createAsyncThunk('authSeller/addProduct', async (request) => {
+export const addProduct = createAsyncThunk('authSeller/addProduct', async (token, name, price, stock, condition, description, color) => {
   const result = {}
   try {
-    const send = qs.stringify(request)
-    const { data } = await http().post('/ProductSeller', send, {
+    const send = qs.stringify(name, price, stock, condition, description, color)
+    const { data } = await http(token).post('/ProductSeller', send, {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
       }
-      
     })
     result.successMsg = data.message;
     return result;
