@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 
 import Home from './page/Home';
 import Bag from './page/Bag';
-import Category from './components/Category';
 import Checkout from './page/Checkout';
 import Dashboard from './page/Dashboard';
 import SellingProducts from './page/SellingProducts'
@@ -25,6 +24,7 @@ import PasswordConfirmationSeller from './page/PasswordConfirmationSeller'
 import ResetPasswordReloginSeller from './page/ResetPasswordReloginSeller'
 import ProfileAddressCostomer from './page/ProfileAddressCostomer';
 import Product from './page/Product'
+import Category from './page/Category'
 import { BrowserRouter } from 'react-router-dom'
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
         <Route path='/reset-confirmation-seller' element={<PasswordConfirmationSeller />}></Route>
         <Route path='/reset-password-relogin-seller' element={<ResetPasswordReloginSeller />}></Route>
         <Route path='/bag' element={<PrivateRoutesCostumer><Bag /></PrivateRoutesCostumer>}></Route>
-        <Route path='/category' element={<PrivateRoutes><Category /></PrivateRoutes>}></Route>
+        <Route path='/category' element={<Category />}></Route>
         <Route path='/checkout' element={<Checkout />}></Route>
         <Route path='/profile' element={<PrivateRoutes><Dashboard /></PrivateRoutes>}></Route>
         <Route path='/profile/seller/addproduct' element={<SellingProducts />}></Route>
