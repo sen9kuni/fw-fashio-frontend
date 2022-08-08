@@ -1,13 +1,83 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal, Form, Alert } from 'react-bootstrap'
 import dummyImage from '../assets/images/Man Suit.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import 'yup-phone';
 
 import gopay from '../assets/images/checkout/Logo-GoPay.png'
 import pos from '../assets/images/checkout/logo pos indonesia.png'
 import masterCard from '../assets/images/checkout/mastercard.png'
 import { FiX } from 'react-icons/fi'
+
+const addressSechema  = Yup.object().shape({
+  postalCode: Yup.string().min(5).required(),
+  recipientPhone: Yup.string().phone('ID').required()
+})
+
+const AddressForm = ({errors, handleSubmit, handleChange})=> {
+  const successMsg = useSelector((state) => state.authCustomer.successMsg)
+  const errorMsg = useSelector((state) => state.authCustomer.errorMsg)
+  return (
+    <Form noValidate onSubmit={handleSubmit}>
+      {successMsg && <Alert variant="success">{successMsg}</Alert>}
+      {errorMsg && <Alert variant="danger">{errorMsg}</Alert>}
+        <Form.Group className="mb-3" >
+          <Form.Label>Save address as (ex : home address, office address)</Form.Label>
+          <Form.Control type="text" name='addressAs' placeholder="Rumah" />
+        </Form.Group>
+        
+        <Row>
+          <Col md={6}>
+            <Form.Group className="mb-3" >
+            <Form.Label>Recipient's name</Form.Label>
+            <Form.Control type="text" name='recipientName' />
+          </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group className="mb-3" >
+            <Form.Label>Recipient's telephone number</Form.Label>
+            <Form.Control type="text" name='recipientPhone' />
+          </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group className="mb-3" >
+            <Form.Label>Address</Form.Label>
+            <Form.Control type="text" name='address' />
+          </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group className="mb-3" >
+            <Form.Label>Postal code</Form.Label>
+            <Form.Control type="text" name='postalCode' />
+          </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group className="mb-3" >
+            <Form.Label>City or Subdistrict</Form.Label>
+            <Form.Control type="text" name='city' />
+          </Form.Group>
+          </Col>
+        </Row>
+        <div className='d-flex flex-row gap-2 align-items-center mb-4'>
+          <div>
+            <Form.Check type='checkbox' name='checkPrimary' value='true' />
+          </div>
+          <div>
+            <span>Make it the primary address</span>
+          </div>
+        </div>
+
+        <div className='d-flex flex-row justify-content-end gap-4'>
+          <Button variant='outline-secondary' className='modal-button-add-address rounded-5' >Cancel</Button>
+          <Button variant='danger' className='modal-button-add-address rounded-5' type="submit">Save</Button>
+        </div>
+        </Form>
+  )
+}
 
 function CardListProductCheckout({src, nameProduct, color, brand, price}) {
   return (
@@ -39,7 +109,7 @@ function ModalAddAddress(props){
       <Modal.Body className='d-flex flex-column gap-4 px-5'>
         <span className='fash-h2 text-center'>Add new address</span>
         
-        <Form>
+        {/* <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Save address as (ex : home address, office address)</Form.Label>
           <Form.Control type="text" placeholder="Rumah" />
@@ -90,7 +160,10 @@ function ModalAddAddress(props){
           <Button variant='outline-secondary' className='modal-button-add-address rounded-5' onClick={props.onHide}>Cancel</Button>
           <Button variant='danger' className='modal-button-add-address rounded-5' onClick={props.onHide}>Save</Button>
         </div>
-        </Form>
+        </Form> */}
+        <Formik initialValues={{addressAs: '', recipientName: '', recipientPhone: '', address: '', postalCode: '', city: '', checkPrimary: ''}} validationSchema={addressSechema} >
+            {(props)=><AddressForm {...props}/>}
+          </Formik>
 
       </Modal.Body>
     </Modal>
@@ -125,6 +198,10 @@ function ModalAddres(props) {
 }
 
 function ModalPayment(props) {
+  const navigate = useNavigate()
+  const onPayment = (value)=> {
+    navigate('/profile/custommer/order')
+  }
   return (
     <Modal
       {...props}
@@ -196,7 +273,7 @@ function ModalPayment(props) {
             <span className='fash-h4 fw-4'>Shopping summary</span>
             <span className='fash-h4 fw-4'>$ 45.0</span>
           </div>
-          <Button variant='danger' className='modal-button-add-address rounded-5' onClick={props.onHide}>Buy</Button>
+          <Button variant='danger' className='modal-button-add-address rounded-5' onClick={onPayment}>Buy</Button>
         </div>
       </Modal.Body>
       {/* <Modal.Footer>

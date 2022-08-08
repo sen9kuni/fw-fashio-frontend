@@ -126,6 +126,7 @@ const Dashboard = () => {
                             <div className="d-flex justify-content-center">
                                 <button className="fash-button bc-primary c-secondary" type='button' onClick={()=>onAddProduct(props.values)}>Save</button>
                             </div>
+                            <Button onClick={()=> onAddProduct(props.values)} >aaaaaaaaa</Button>
                         </div>
                     </div>
                 }
