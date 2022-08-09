@@ -20,10 +20,10 @@ function LoginSeller() {
 
     const [radioValue, setRadioValue] = useState('1');
 
-  const radios = [
-    { name: 'Custommer', value: '1' },
-    { name: 'Seller', value: '2' },
-  ];
+  // const radios = [
+  //   { name: 'Custommer', value: '1' },
+  //   { name: 'Seller', value: '2' },
+  // ];
 
     return (
         <section>
@@ -38,8 +38,26 @@ function LoginSeller() {
       
       </div>
       <div className='d-flex align-items-center justify-content-center'>
-      <ButtonGroup className='mb-5 login-btn-switch'>
+
+      <div style={{paddingBottom: '40px' }}>
+      <Link to="/login-customer" className="text-decoration-none">
+        <button className="btn btn-lg" 
+        style={{  border: '1px solid #9B9B9B',
+                  filter: 'drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.05))',
+                  borderRadius: '4px 0px 0px 4px',
+                  color: '#DB3022'
+                  }} value=''>Customer</button>
+      </Link> 
+        <button className="btn btn-lg" 
+        style= {{ background: '#DB3022',
+                  boxShadow: '0px 1px 8px rgba(0, 0, 0, 0.05)',
+                  borderRadius: '0px 4px 4px 0px',
+                  color: '#fff'
+                  }}>Seller</button>
+      </div>
+      {/* <ButtonGroup className='mb-5 login-btn-switch'>
         {radios.map((radio, idx) => (
+
           <ToggleButton
             key={idx}
             id={`radio-${idx}`}
@@ -53,7 +71,7 @@ function LoginSeller() {
             {radio.name}
           </ToggleButton>
         ))}
-      </ButtonGroup>
+      </ButtonGroup> */}
       </div>
       <Formik initialValues={{email: '', password:''}}>
       {(props)=> 
