@@ -5,7 +5,9 @@ import Card from '../components/Card'
 import { AiFillShopping, AiOutlineSearch, AiOutlineFilter, AiOutlineShoppingCart, AiOutlineBell, AiOutlineMail } from "react-icons/ai";
 import '../assets/css/index.css';
 import profile from '../assets/images/profile.jpg'
-import { Navbar, Form, InputGroup } from 'react-bootstrap';
+import { Form, InputGroup } from 'react-bootstrap';
+import Navbar from '../components/Navbar';
+import NavbarNotif from '../components/Notification';
 
 const Category = () => {
     const [pages, setPages] = useState([]);
@@ -52,7 +54,7 @@ const Category = () => {
     }
     return (
         <>
-            <Navbar className='fash-navbar bc-primary w-fill '>
+            {/* <Navbar className='fash-navbar bc-primary w-fill '>
                 <Container className='px-5'>
                     <Col className='d-flex align-items-center'>
                         <Navbar.Brand>
@@ -88,11 +90,12 @@ const Category = () => {
                         </Navbar.Collapse>
                     </Col>
                 </Container>
-            </Navbar>
+            </Navbar> */}
+            <Navbar />
             <Container className='px-5'>
                 <Row>
                     <Col className='my-5'>
-                        <Link to={'/'}>Home</Link><span> - </span><Link to={'/'}>category</Link><span> - </span><Link to={'/'}>T-Shirt</Link>
+                        <Link className='text-decoration-none' to={'/'}>Home</Link><span> - </span><Link className='text-decoration-none' to={'/'}>category</Link><span> - </span><Link className='text-decoration-none' to={'/'}>T-Shirt</Link>
                     </Col>
                 </Row>
                 <Row className='mb-3'>
