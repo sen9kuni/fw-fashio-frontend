@@ -2,9 +2,10 @@
 import { AiFillShopping, AiOutlineSearch, AiOutlineFilter, AiOutlineShoppingCart, AiOutlineBell, AiOutlineMail } from "react-icons/ai";
 import profile from '../assets/images/profile.jpg'
 import { Link } from 'react-router-dom'
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-    const token = true
+    const token = useSelector((state) => state.authSeller.token)
     return(
         <div className="fash-navbar bc-primary w-fill d-flex justify-content-center">
             <div className="fash-control-navbar d-flex align-items-center justify-content-between h-fill">

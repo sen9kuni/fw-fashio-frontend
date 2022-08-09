@@ -69,7 +69,7 @@ const Home = () => {
                         <span className="fash-h2 c-black">New</span>
                         <span className="fash-h6 c-dark">You've never seen it before!</span>
                         <div className="d-flex fash-control-product-card gap-3">
-                            <Card />
+                            {/* <Card /> */}
                             {products && products?.map((o) => {
                                 return (
                                     <Card nameProduct={o.name_product}  />
