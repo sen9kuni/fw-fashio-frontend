@@ -46,7 +46,7 @@ const Navbar = () => {
                                 <button className="fash-button bc-primary c-secondary" type='button'>Login</button>
                             </Link>
                             <Link className='text-decoration-none' to='/signup-customer'>
-                                <button className="fash-button bc-primary c-secondary" type='button'>Singup</button>
+                                <button className="fash-button bc-primary c-secondary" type='button'>Sign up</button>
                             </Link>
                         </div>
                     }
