@@ -53,10 +53,10 @@ function SignUpCutomer() {
 
     const [radioValue, setRadioValue] = useState('1');
 
-    const radios = [
-      { name: 'Custommer', value: '1' },
-      { name: 'Seller', value: '2' },
-    ];
+    // const radios = [
+    //   { name: 'Custommer', value: '1' },
+    //   { name: 'Seller', value: '2' },
+    // ];
 
     return (
         <section>
@@ -71,7 +71,21 @@ function SignUpCutomer() {
       
       </div>
       <div className='d-flex align-items-center justify-content-center'>
-      <ButtonGroup className='mb-5 login-btn-switch'>
+      <div style={{paddingBottom: '40px' }}>
+        <button className="btn btn-lg" 
+        style={{  background: '#DB3022',
+                  boxShadow: '0px 1px 8px rgba(0, 0, 0, 0.05)',
+                  borderRadius: '4px 0px 0px 4px', color: '#fff'
+                  }} value=''>Customer</button>
+        <Link to="/signup-seller" className="text-decoration-none">
+        <button className="btn btn-lg" 
+        style= {{ border: '1px solid #9B9B9B',
+                  filter: 'drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.05))',
+                  borderRadius: '0px 4px 4px 0px', 
+                  color:'#DB3022'}}>Seller</button>
+        </Link> 
+      </div>
+      {/* <ButtonGroup className='mb-5 login-btn-switch'>
         {radios.map((radio, idx) => (
           <ToggleButton
             key={idx}
@@ -86,7 +100,7 @@ function SignUpCutomer() {
             {radio.name}
           </ToggleButton>
         ))}
-      </ButtonGroup>
+      </ButtonGroup> */}
       </div>
       {/* <Form>
         <Form.Group className="mb-3" controlId="formBasicName">

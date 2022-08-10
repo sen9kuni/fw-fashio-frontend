@@ -1,5 +1,6 @@
 
 import profile from '../assets/images/profile.jpg'
+import { Link } from 'react-router-dom'
 import { AiOutlineEdit, AiOutlineUser, AiOutlineEnvironment, AiOutlineSnippets } from "react-icons/ai";
 
 const DashboardMenu = () => {
@@ -14,7 +15,8 @@ const DashboardMenu = () => {
                         <span className='fash-h5 fw-4'>Johanes Mikael</span>
                         <div className=' d-flex gap-1'>
                             <AiOutlineEdit className='c-dark' />
-                            <span className='fash-h8 c-dark'>Ubah profile</span>
+                            <Link className='fash-h8 c-dark' style={{textDecoration: 'none'}} to="/profile">Ubah profile</Link>
+                            
                         </div>
                     </div>
                 </div>
@@ -24,21 +26,23 @@ const DashboardMenu = () => {
                         <div className="fash-menu-icon bg-primary d-flex align-items-center justify-content-center">
                             <AiOutlineUser className='c-white fash-h5' />
                         </div>
-                        <span className='fash-h6 fw-4 c-primary'>My account</span>
+                        <Link className='fash-h6 fw-4 c-primary' style={{textDecoration: 'none'}} to="/profile">My account</Link>
+                        {/* <span className='fash-h6 fw-4 c-primary'>My account</span> */}
                     </div>
 
                     <div className='d-flex align-items-center gap-2'>
                         <div className="fash-menu-icon bg-danger d-flex align-items-center justify-content-center">
                             <AiOutlineEnvironment className='c-white fash-h5' />
                         </div>
-                        <span className='fash-h6 fw-4 c-primary'>Shipping Adrress</span>
+                        <Link className='fash-h6 fw-4 c-primary' style={{textDecoration: 'none'}} to="/profile/custommer/address">Shipping Adrress</Link>
                     </div>
 
                     <div className='d-flex align-items-center gap-2'>
                         <div className="fash-menu-icon bg-warning d-flex align-items-center justify-content-center">
                             <AiOutlineSnippets className='c-white fash-h5' />
                         </div>
-                        <span className='fash-h6 fw-4 c-primary'>My order</span>
+                        <Link className='fash-h6 fw-4 c-primary' style={{textDecoration: 'none'}} to="/profile/custommer/order">My order</Link>
+                        
                     </div>
                 </div>
             </div>
