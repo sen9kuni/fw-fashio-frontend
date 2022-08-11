@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getAddresById, getAllAddress, loginCustomer, registerCustomer } from '../asyncActions/authCustomer'
+import { addAddress, editAddress, getAddresById, getAllAddress, getProfileCostumer, loginCustomer, registerCustomer } from '../asyncActions/authCustomer'
 
 const initialState = {
   token: localStorage.getItem('token') || null,
@@ -7,7 +7,8 @@ const initialState = {
   successMsg: null,
   email: null,
   dataAddress: [],
-  addressChoice: null
+  addressChoice: null,
+  dataProfile: []
 }
 
 const authCustomer = createSlice({
@@ -62,9 +63,35 @@ const authCustomer = createSlice({
     build.addCase(getAddresById.fulfilled, (state,action) => {
       state.addressChoice = action.payload.result
     })
+
+    build.addCase(getProfileCostumer.pending, (state)=> {
+      state.errorMsg = null
+      state.successMsg = null
+    })
+    build.addCase(getProfileCostumer.fulfilled, (state, action) => {
+      state.dataProfile = action.payload.result
+    })
+
+    build.addCase(addAddress.pending, (state) => {
+      state.errorMsg = null
+      state.successMsg = null
+    })
+    build.addCase(addAddress.fulfilled, (state, action)=> {
+      state.errorMsg = action.payload?.errorMsg;
+      state.successMsg = action.payload?.successMsg;
+    })
+
+    build.addCase(editAddress.pending, (state) => {
+      state.errorMsg = null
+      state.successMsg = null
+    })
+    build.addCase(editAddress.fulfilled, (state, action)=> {
+      state.errorMsg = action.payload?.errorMsg;
+      state.successMsg = action.payload?.successMsg;
+    })
   }
 })
 
-export { loginCustomer, registerCustomer, getAllAddress }
+export { loginCustomer, registerCustomer, getAllAddress, getAddresById, getProfileCostumer, addAddress, editAddress }
 export const { logoutCustomer, setEmailCustomer, deleteEmailCustomer } = authCustomer.actions
 export default authCustomer.reducer

@@ -72,7 +72,7 @@ const Home = () => {
                             {/* <Card /> */}
                             {products && products?.map((o) => {
                                 return (
-                                    <Card nameProduct={o.name_product}  />
+                                    <Card key={o.id} nameProduct={o.name_product}  />
                                 )
                             })}
                         </div>

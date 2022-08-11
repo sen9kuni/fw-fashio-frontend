@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import 'yup-phone';
 import { useDispatch, useSelector } from 'react-redux'
+import { addAddress } from '../redux/asyncActions/authCustomer';
 
 const addressSechema  = Yup.object().shape({
   postalCode: Yup.string().min(5).required(),
@@ -19,44 +20,44 @@ const AddressForm = ({errors, handleSubmit, handleChange})=> {
       {errorMsg && <Alert variant="danger">{errorMsg}</Alert>}
         <Form.Group className="mb-3" >
           <Form.Label>Save address as (ex : home address, office address)</Form.Label>
-          <Form.Control type="text" placeholder="Rumah" />
+          <Form.Control onChange={handleChange} type="text" name='place_name' placeholder="Rumah" />
         </Form.Group>
 
         <Row>
           <Col md={6}>
             <Form.Group className="mb-3" >
             <Form.Label>Recipient's name</Form.Label>
-            <Form.Control type="text" name='recipientName' />
+            <Form.Control onChange={handleChange} type="text" name='recepient_name' />
           </Form.Group>
           </Col>
           <Col md={6}>
             <Form.Group className="mb-3" >
             <Form.Label>Recipient's telephone number</Form.Label>
-            <Form.Control type="text" name='recipientPhone' />
+            <Form.Control onChange={handleChange} type="text" name='recepient_phone' />
           </Form.Group>
           </Col>
           <Col md={6}>
             <Form.Group className="mb-3" >
             <Form.Label>Address</Form.Label>
-            <Form.Control type="text" name='address' />
+            <Form.Control onChange={handleChange} type="text" name='address' />
           </Form.Group>
           </Col>
           <Col md={6}>
             <Form.Group className="mb-3" >
             <Form.Label>Postal code</Form.Label>
-            <Form.Control type="text" name='postalCode' />
+            <Form.Control onChange={handleChange} type="text" name='postal_code' />
           </Form.Group>
           </Col>
           <Col md={6}>
             <Form.Group className="mb-3" >
             <Form.Label>City or Subdistrict</Form.Label>
-            <Form.Control type="text" name='city' />
+            <Form.Control onChange={handleChange} type="text" name='city' />
           </Form.Group>
           </Col>
         </Row>
         <div className='d-flex flex-row gap-2 align-items-center mb-4'>
           <div>
-            <Form.Check type='checkbox' name='checkPrimary' value='true' />
+            <Form.Check onChange={handleChange} type='checkbox' name='primary_address' value='true' />
           </div>
           <div>
             <span>Make it the primary address</span>
@@ -65,13 +66,20 @@ const AddressForm = ({errors, handleSubmit, handleChange})=> {
 
         <div className='d-flex flex-row justify-content-end gap-4'>
           <Button variant='outline-secondary' className='modal-button-add-address rounded-5' >Cancel</Button>
-          <Button variant='danger' className='modal-button-add-address rounded-5' type="submit">Save</Button>
+          <Button type="submit" variant='danger' className='modal-button-add-address rounded-5'>Save</Button>
         </div>
         </Form>
   )
 }
 
 function ModalAddAddressNew(props){
+  const dispatch = useDispatch()
+  const token = useSelector((state) => state.authCustomer.token)
+  const onAddAdress = (value) => {
+    const param = {token: token, recepient_name: value.recepient_name, recepient_phone: value.recepient_phone, address: value.address, city: value.city, postal_code: value.postal_code, primary_address: value.primary_address === true ? true : false, place_name: value.place_name}
+    // console.log(param);
+    dispatch(addAddress(param))
+  }
   return (
     <Modal
       {...props}
@@ -87,9 +95,9 @@ function ModalAddAddressNew(props){
         <span className='fash-h2 text-center'>Add new address</span>
         
         {/*m> */}
-        <Formik initialValues={{addressAs: '', recipientName: '', recipientPhone: '', address: '', postalCode: '', city: '', checkPrimary: ''}} validationSchema={addressSechema} >
+        <Formik initialValues={{place_name: '', recepient_name: '', recepient_phone: '', address: '', postal_code: '', city: '', primary_address: ''}} onSubmit={onAddAdress} >
             {(props)=><AddressForm {...props}/>}
-          </Formik>
+        </Formik>
 
       </Modal.Body>
     </Modal>
