@@ -1,8 +1,86 @@
 
 import { AiFillShopping, AiOutlineSearch, AiOutlineFilter, AiOutlineShoppingCart, AiOutlineBell, AiOutlineMail } from "react-icons/ai";
 import profile from '../assets/images/profile.jpg'
-import { Link } from 'react-router-dom'
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
+import { logoutCustomer } from "../redux/reducers/authCustomer";
+import { logoutSeller } from "../redux/reducers/authSeller";
+import React from "react";
+import { getProfileCostumer } from "../redux/asyncActions/authCustomer";
+
+function ProfileNav() {
+    const tokenCostumer = useSelector((state) => state.authCustomer.token)
+    const tokenSeller = useSelector((state) => state.authSeller.token)
+    const profileCostomer = useSelector((state) => state.authCustomer.dataProfile)
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const onLogoutCustomer = () => {
+    dispatch(logoutCustomer(()=>{
+        navigate('/login-customer')
+    }))
+    window.location.reload(false);
+    };
+    const onLogoutSeller = () => {
+    dispatch(logoutSeller(()=>{
+        navigate('/login-seller')
+    }))
+    window.location.reload(false);
+    };
+
+    React.useEffect(()=> {
+        dispatch(getProfileCostumer(tokenCostumer))
+    }, [])
+    if (tokenCostumer) {
+        return (
+            <div className="d-flex gap-4 align-items-center">
+                <Link className='text-decoration-none' to='/bag'>
+                    <AiOutlineShoppingCart className="fash-h2 c-dark" />
+                </Link>
+                <AiOutlineBell className="fash-h2 c-dark" />
+                <Link className='text-decoration-none' to='/chat'>
+                    <AiOutlineMail className="fash-h2 c-dark" />
+                </Link>
+                <Link className='text-decoration-none' to='/profile'>
+                    <div className="fash-nav-profile">
+                        <img src={`http://localhost:3334/public/uploads/${profileCostomer?.picture}`} alt='profile'/>
+                    </div>
+                </Link>
+                <Button onClick={onLogoutCustomer}>Log Out</Button>
+            </div>
+        )
+    } else if (tokenSeller) {
+        return (
+            <div className="d-flex gap-4 align-items-center">
+                <Link className='text-decoration-none' to='/bag'>
+                    <AiOutlineShoppingCart className="fash-h2 c-dark" />
+                </Link>
+                <AiOutlineBell className="fash-h2 c-dark" />
+                <Link className='text-decoration-none' to='/chat'>
+                    <AiOutlineMail className="fash-h2 c-dark" />
+                </Link>
+                <Link className='text-decoration-none' to='/profile/seller/profile'>
+                    <div className="fash-nav-profile">
+                        <img src={profile} alt='profile'/>
+                    </div>
+                </Link>
+                <Button onClick={onLogoutSeller}>Log Out</Button>
+            </div>
+        )
+    } else {
+        return (
+            <div className="d-flex gap-4">
+                <Link className='text-decoration-none' to='/login-customer'>
+                    <button className="fash-button bc-primary c-secondary" type='button'>Login</button>
+                </Link>
+                <Link className='text-decoration-none' to='/signup-customer'>
+                    <button className="fash-button bc-primary c-secondary" type='button'>Singup</button>
+                </Link>
+            </div>
+        )
+    }
+}
 
 const Navbar = () => {
     const token = useSelector((state) => state.authSeller.token)
@@ -25,7 +103,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="d-flex gap-4 align-items-center">
-                    {token? 
+                    {/* {token? 
                         <div className="d-flex gap-4 align-items-center">
                             <Link className='text-decoration-none' to='/bag'>
                                 <AiOutlineShoppingCart className="fash-h2 c-dark" />
@@ -49,7 +127,8 @@ const Navbar = () => {
                                 <button className="fash-button bc-primary c-secondary" type='button'>Sign up</button>
                             </Link>
                         </div>
-                    }
+                    } */}
+                    <ProfileNav />
                 </div>
             </div>
         </div>

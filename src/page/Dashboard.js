@@ -35,11 +35,11 @@ const Dashboard = () => {
                                     <span className="fash-h6 c-dark">Gender</span>
                                     <div className="d-flex fash-control-input-radio align-items-center gap-5">
                                         <div className="d-flex align-items-center gap-2">
-                                            <input type="radio" name="male" />
+                                            <input type="radio" name="gender" value='Male' />
                                             <span className="fash-h6 c-dark">Laki-laki</span>
                                         </div>
                                         <div className="d-flex align-items-center gap-2">
-                                            <input type="radio" name="female" />
+                                            <input type="radio" name="gender" value='Female' />
                                             <span className="fash-h6 c-dark">Perempuan</span>
                                         </div>
                                     </div>
