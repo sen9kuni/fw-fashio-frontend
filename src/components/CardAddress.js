@@ -83,9 +83,10 @@ function ModalChangeAddress(props){
   const addressChoice = useSelector((state) => state.authCustomer.addressChoice)
   const token = useSelector((state) => state.authCustomer.token)
   const id = addressChoice?.map((o)=>o.id)[0]
+  const user_id = addressChoice?.map((o)=>o.costumer_id)[0]
   const onEditAddress = (value)=> {
     // console.log(value);
-    const param = {id: id, token: token, recepient_name: value.recepient_name, recepient_phone: value.recepient_phone, address: value.address, city: value.city, postal_code: value.postal_code, primary_address: value.primary_address === true ? true : false, place_name: value.place_name}
+    const param = {id_address: id, id: user_id, token: token, recepient_name: value.recepient_name, recepient_phone: value.recepient_phone, address: value.address, city: value.city, postal_code: value.postal_code, primary_address: value.primary_address, place_name: value.place_name}
     console.log(param);
     dispatch(editAddress(param))
   }

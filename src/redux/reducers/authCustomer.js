@@ -86,8 +86,9 @@ const authCustomer = createSlice({
       state.successMsg = null
     })
     build.addCase(editAddress.fulfilled, (state, action)=> {
-      state.errorMsg = action.payload?.errorMsg;
-      state.successMsg = action.payload?.successMsg;
+      // state.errorMsg = action.payload?.errorMsg;
+      // state.successMsg = action.payload?.successMsg;
+      state.successMsg = action.payload.message
     })
   }
 })

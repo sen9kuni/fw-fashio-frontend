@@ -134,9 +134,10 @@ export const addAddress = createAsyncThunk('authCustomer/addAddress', async (par
 // create address
 
 // edit address
-export const editAddress = createAsyncThunk('authCustomer/edit-Address', async (param)=> {
+export const editAddress = createAsyncThunk('authCustomer/editAddress', async (param)=> {
   const result = {}
-  const setId = parseInt(param.id)
+  // const id = param.id
+  const id_address = parseInt(param.id_address)
   const token = param.token
   const recepient_name = param.recepient_name
   const recepient_phone = param.recepient_phone
@@ -145,16 +146,20 @@ export const editAddress = createAsyncThunk('authCustomer/edit-Address', async (
   const postal_code = param.postal_code
   const primary_address = param.primary_address
   const place_name = param.place_name
+  const datareq = {recepient_name: recepient_name, recepient_phone: recepient_phone, address: address, city: city, postal_code: postal_code, primary_address:primary_address, place_name: place_name}
   try {
-    const send = qs.stringify({recepient_name, recepient_phone, address, city, postal_code, primary_address, place_name})
-    const { data } = await http(token).patch(`/address-costumer/edit/${setId}`, send, {
+    const send = qs.stringify(datareq)
+    // console.log(send);
+    const { data } = await http(token).patch('/address-costumer/edit/' + id_address, send, {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
       }
     })
-    result.successMsg = data.message
-    return result
+    // result.successMsg = data.message
+    console.log(data);
+    return data
   } catch (e) {
+    console.log(e);
     result.errorMsg = e.response.data.message
     return result
   }
